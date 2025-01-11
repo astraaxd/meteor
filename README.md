@@ -1,2 +1,2 @@
 # meteor
-EaglerForge/HyperXFabric mod for EaglercraftX. Inspired by Wurst and Meteor client.
+EaglerForge/HyperXFabric mod for EaglercraftX. Inspired by Wurst and Meteor clients.
