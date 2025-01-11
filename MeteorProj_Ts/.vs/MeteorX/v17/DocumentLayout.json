@@ -1,0 +1,56 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dknew\\Downloads\\MeteorX\\MeteorProj\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{97E1617C-84AD-481C-B048-5DBFC8C820EE}|MeteorX.esproj|c:\\users\\dknew\\downloads\\meteorx\\meteorproj\\mainui.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{97E1617C-84AD-481C-B048-5DBFC8C820EE}|MeteorX.esproj|solutionrelative:mainui.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dknew\\Downloads\\MeteorX (1)\\MeteorX\\MeteorProj\\ModAPI.d.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ModAPI.d.ts",
+              "DocumentMoniker": "C:\\Users\\dknew\\Downloads\\MeteorX (1)\\MeteorX\\MeteorProj\\ModAPI.d.ts",
+              "RelativeDocumentMoniker": "..\\..\\MeteorX (1)\\MeteorX\\MeteorProj\\ModAPI.d.ts",
+              "ToolTip": "C:\\Users\\dknew\\Downloads\\MeteorX (1)\\MeteorX\\MeteorProj\\ModAPI.d.ts",
+              "RelativeToolTip": "..\\..\\MeteorX (1)\\MeteorX\\MeteorProj\\ModAPI.d.ts",
+              "ViewState": "AgIAAPwAAAAAAAAAAAAhwAwBAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-01-10T00:58:14.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainUI.ts",
+              "DocumentMoniker": "C:\\Users\\dknew\\Downloads\\MeteorX\\MeteorProj\\MainUI.ts",
+              "RelativeDocumentMoniker": "MainUI.ts",
+              "ToolTip": "C:\\Users\\dknew\\Downloads\\MeteorX\\MeteorProj\\MainUI.ts",
+              "RelativeToolTip": "MainUI.ts",
+              "ViewState": "AgIAAPIAAAAAAAAAAAArwPwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-11-01T02:12:34.93Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

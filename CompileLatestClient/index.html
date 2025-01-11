@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompileLatestClient</title>
+	<link rel="icon" href="icon32.png" type="image/png">
+    <style>
+        .header, body { display: flex; }
+        .header img, h2 { margin-bottom: 10px; }
+        body { font-family: Arial, sans-serif; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #000; }
+        .container { width: 550px; border: 1px solid #ccc; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, .2); }
+        .footer, .header { background-color: #efefef; }
+        .header { flex-direction: column; padding: 10px; text-align: left; font-size: 1em; align-items: center; }
+        .header img { width: 30px; height: 30px; }
+        .header h1 { font-size: 1em; margin: 0; }
+        .header a { font-size: .9em; color: #333; margin-top: 10px; }
+        .page-content { padding: 20px; display: none; }
+        h2 { font-size: 1.2em; }
+        .output, input[type=file], textarea { width: 100%; border: 1px solid #ccc; box-sizing: border-box; }
+        .output, button, p { font-size: .9em; }
+        p { color: #333; margin: 5px 0 15px; }
+        input[type=file], textarea { margin: 10px 0; padding: 8px; font-size: .9em; }
+        textarea { height: 120px; resize: vertical; }
+        .footer { display: flex; justify-content: space-between; padding: 10px; }
+        button { padding: 6px 12px; cursor: pointer; }
+        .output { height: 100px; margin-top: 10px; background-color: #f9f9f9; padding: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="eagler.png" alt="Icon">
+            <h1>MeteorX Client 1.8 Compiler</h1>
+            <a style="display: block;">Copyright (c) 2022-2025 Astraa__XD</a>
+        </div>
+
+        <div id="page1" class="page-content" style="display: block;">
+            <h1>Welcome to the MeteorX 1.8 Client Compiler</h1>
+            <p>This tool allows you to automatically compile the latest version of the MeteorX Client using the files that are in your MeteorX Client folder.</p>
+            <p>To comply with EaglercraftX, Mojang, and other's Terms of Service, you are required to manually download several necessary files. Links to these files will be provided.</p>
+            <p>For direct modifying your fork of the MeteorX Client source code (usually for creating clients), please FORK the official source code on <a href="https://github.com/astraaxd/meteor" target="_blank">GitHub</a>.</p>
+            <p>When modifying your fork of the MeteorX client, you MUST the GPL-3.0 license guidelines. If you're interested in using any part of the clients code, it must be open sourced.</p>
+            <div class="footer">
+                <button disabled>&lt;&lt; Back</button>
+                <button onclick="nextPage(2)">Next &gt;&gt;</button>
+            </div>
+        </div>
+
+        <div id="page2" class="page-content">
+            <h2>Copyright (c) 2022-2024 Astraa__XD, LAX1DUDE, ayunami2000. All Rights Reserved</h2>
+            <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+            <div class="footer">
+                <label>
+                    <input type="checkbox" id="termsAndConditionsCheckbox" onclick="toggleNextButton()" />
+                    I agree to these terms and conditions
+                </label>
+                <br>
+                <button onClick="previousPage(1)">&lt;&lt; Back</button>
+                <button id="termsAndConditionsNextButton" onclick="nextPage(3)" disabled>Next &gt;&gt;</button>
+            </div>
+        </div>
+
+        <div id="page3" class="page-content">
+            <h1>MeteorX Client Source Code</h1>
+            <p>Please select your copy of the MeteorX Client .zip from the official repo, or if you are making your own, select the .zip of your custom client.</p>
+            <p>It is recommended to use 7Zip or WinRAR to zip your custom client, as standard Windows zipping is trash. The official download links are below.</p>
+            <b>WinRAR:</b>
+            <p><a href="https://www.win-rar.com/download.html" target="_blank">https://www.win-rar.com/download.html</a></p>
+            <b>7Zip:</b>
+            <p><a href="https://7-zip.org/download.html" target="_blank">https://7-zip.org/download.html</a></p>
+            <input type="file" id="meteorx-selector" accept=".zip" onchange="updatePath(this, 'meteorx')" />
+            <div class="footer">
+                <button onclick="previousPage(2)">&lt;&lt; Back</button>
+                <button onclick="nextPage(4)">Next &gt;&gt;</button>
+            </div>
+        </div>
+
+        <div id="page4" class="page-content">
+            <h1>TypeScript</h1>
+            <p>A copy of TypeScript is required to compile the MeteorX Client.</p>
+            <p>We need this to transpile TypeScript (Ts) code into JavaScript (Js). Since browsers understand JavaScript but not TypeScript, the code must first be converted to JavaScript. Please download the TypeScript .js file separately.</p>
+            <b>The official download link is at: <a href="https://www.jsdelivr.com/package/npm/typescript" target="_blank">https://www.jsdelivr.com/package/npm/typescript</a></b>
+            <p>Visit the link and download the typescript.min.js file.</p>
+            <input type="file" id="typescript-selector" accept=".js" onchange="updatePath(this, 'typescript')" />
+            <div class="footer">
+                <button onclick="previousPage(3)">&lt;&lt; Back</button>
+                <button onclick="nextPage(5)">Next &gt;&gt;</button>
+            </div>
+        </div>
+
+        <div id="page5" class="page-content">
+            <h1>esBuild</h1>
+            <p>A copy of esBuild is required to bundle the JavaScript files that we compiled using TypeScript.</p>
+            <p>esBuild combines multiple JavaScript files into one, handling dependencies between files. Please download the esBuild .js file separately.</p>
+            <b>The official download link is at: <a href="https://www.jsdelivr.com/package/npm/esbuild" target="_blank">https://www.jsdelivr.com/package/npm/esbuild</a></b>
+            <p>Visit the link and download the esbuild.min.js file.</p>
+			<p>____________________________________________________________</p>
+			<p>HEY! esBuild is NO LONGER NEEDED! esBuild broke the compilation last time, so its no longer used. This MIGHT change soon though!!!</p>
+            <input type="file" id="esbuild-selector" accept=".js" onchange="updatePath(this, 'esbuild')" />
+            <div class="footer">
+                <button onclick="previousPage(4)">&lt;&lt; Back</button>
+                <button onclick="nextPage(6)">Next &gt;&gt;</button>
+            </div>
+        </div>
+
+        <div id="page6" class="page-content">
+            <h1>Terser</h1>
+            <p>A copy of Terser is required to minify the JavaScript files we bundled using esBuild for the MeteorX Client.</p>
+            <p>Terser reduces the size of JavaScript code by compressing it, making it smaller and easier for the browser to read. Please download the Terser .js file separately.</p>
+            <b>The official download link is at: <a href="https://www.jsdelivr.com/package/npm/terser" target="_blank">https://www.jsdelivr.com/package/npm/terser</a></b>
+            <p>Visit the link and download the terser.min.js file.</p>
+            <input type="file" id="terser-selector" accept=".js" onchange="updatePath(this, 'terser')" />
+            <div class="footer">
+                <button onclick="previousPage(5)">&lt;&lt; Back</button>
+                <button onclick="nextPage(7)">Next &gt;&gt;</button>
+            </div>
+        </div>
+		
+		
+		<div id="page7" class="page-content">
+            <h1>JSZip</h1>
+            <p>A copy of JSZip is required to read the MeteorX Client .zip.</p>
+            <p>JSZip is needed to actually load and read the MeteorX Client file, so that we can compile it to JavaScript. Please download the JSZip .js file separately.</p>
+            <b>The official download link is at: <a href="https://www.jsdelivr.com/package/npm/jszip" target="_blank">https://www.jsdelivr.com/package/npm/jszip</a></b>
+            <p>Visit the link and download the jszip.min.js file.</p>
+            <input type="file" id="jszip-selector" accept=".js" onchange="updatePath(this, 'jszip')" />
+            <div class="footer">
+                <button onclick="previousPage(6)">&lt;&lt; Back</button>
+                <button onclick="nextPage(8)">Next &gt;&gt;</button>
+            </div>
+        </div>
+		
+		
+        <div id="page8" class="page-content">
+            <h1>Are these correct?</h1>
+            <p id="meteorx-path">MeteorX Client Zip: None</p>
+            <p id="typescript-path">TypeScript: None</p>
+            <p id="esbuild-path">esBuild: None</p>
+            <p id="terser-path">Terser: None</p>
+            <p id="jszip-path">JSZip: None</p>
+						<label>
+                <input type="checkbox" id="compileJsToJsCheckbox" />
+                Skip TypeScript compilation (ONLY use this if your client is NOT using TypeScript and only JavaScript)
+            </label>
+            <h2>Press the "Compile &gt;&gt;" button to confirm.</h2>
+            <div class="footer">
+                <button onclick="previousPage(7)">&lt;&lt; Back</button>
+                <button onclick="locallyCompileLatestClient()">Compile &gt;&gt;</button>
+            </div>
+        </div>
+		
+		<div id="page9" class="page-content">
+            <h1>Compiling MeteorX Client...</h1>
+            <p>This will take a while. (or maybe not!!!!)</p>
+            <h2>Press the "Compile &gt;&gt;" button to confirm.</h2>
+            <div class="footer">
+                <button onclick="previousPage(7)">&lt;&lt; Stop Compiling</button>
+            </div>
+        </div>
+    </div>
+    <script>
+function toggleNextButton() {
+    const checkbox = document.getElementById('termsAndConditionsCheckbox');
+    document.getElementById('termsAndConditionsNextButton').disabled = !checkbox.checked;
+}
+
+function nextPage(pageNumber) {
+    document.querySelectorAll('.page-content').forEach(page => page.style.display = 'none');
+    document.getElementById(`page${pageNumber}`).style.display = 'block';
+}
+
+function previousPage(pageNumber) {
+    document.querySelectorAll('.page-content').forEach(page => page.style.display = 'none');
+    document.getElementById(`page${pageNumber}`).style.display = 'block';
+}
+
+function locallyCompileLatestClient() {
+    (async () => {
+        nextPage(9);
+        console.log('This might take a while, go get a drink or something lol');
+        console.log('please be patient you eagler');
+        alert('This might take a while, go get a drink or something lol');
+        alert('please be patient you eagler');
+        await processFiles();
+    })();
+}
+
+function getFileName(inputId) {
+    const fileInput = document.getElementById(inputId);
+    return fileInput.files.length > 0 ? fileInput.files[0] : null;
+}
+
+function updatePath(input, type) {
+    const filePath = input.value.split('\\').pop();
+    const fileNameElement = document.getElementById(`${type}-path`);
+    
+    if (fileNameElement) {
+        fileNameElement.textContent = filePath ? `${type.charAt(0).toUpperCase() + type.slice(1)}: ${filePath}` : `${type.charAt(0).toUpperCase() + type.slice(1)}: None`;
+    } else {
+        console.error(`Element with ID ${type}-path not found.`);
+    }
+}
+
+async function loadJSZip() {
+    const file = getFileName('jszip-selector');
+    if (!file) {
+        throw new Error('no jszip file found deeg');
+    }
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = URL.createObjectURL(file);
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('failed loading jszip deeg!'));
+        document.head.appendChild(script);
+    });
+}
+
+async function loadTerser() {
+    const file = getFileName('terser-selector');
+    if (!file) {
+        throw new Error('no terser file you fegler');
+    }
+    const script = document.createElement('script');
+    script.src = URL.createObjectURL(file);
+    document.head.appendChild(script);
+}
+
+async function loadTypeScript() {
+    const file = getFileName('typescript-selector');
+    if (!file) {
+        throw new Error('typescript file not sel;ected you eagler');
+    }
+    const script = document.createElement('script');
+    script.src = URL.createObjectURL(file);
+    document.head.appendChild(script);
+}
+
+async function loadZipAndCompile(skipTypeScript) {
+    const zipFile = getFileName('meteorx-selector');
+    if (!zipFile) {
+        throw new Error('client zip not selected degler');
+    }
+
+    const zip = new JSZip();
+    const fileEntries = [];
+
+    const zipContent = await zip.loadAsync(zipFile);
+    zip.forEach((relativePath, file) => {
+        if (skipTypeScript && file.name.endsWith('.js')) {
+            fileEntries.push(file.async("text").then(content => {
+                return { name: file.name, content };
+            }));
+        } else if (!skipTypeScript && file.name.endsWith('.ts')) {
+            fileEntries.push(file.async("text").then(content => {
+                return { name: file.name.replace(/\.ts$/, '.js'), content };
+            }));
+        }
+    });
+    return Promise.all(fileEntries);
+}
+
+function compileTypeScript(tsFileContent) {
+    const result = ts.transpileModule(tsFileContent.content, {
+        compilerOptions: { module: ts.ModuleKind.CommonJS }
+    });
+    return result.outputText;
+}
+
+async function bundleWithEsBuild(jsContents) {
+    /*const esbuildFile = getFileName('esbuild-selector');
+    if (!esbuildFile) {
+        throw new Error('esbuild not selected you deeg');
+    }
+    const script = document.createElement('script');
+    script.src = URL.createObjectURL(esbuildFile);
+    document.head.appendChild(script);
+
+    await new Promise(resolve => script.onload = resolve);
+
+    const bundled = esbuild.transformSync(jsContents.join('\n\n'), { bundle: true });
+    return bundled.code;*/
+	return jsContents; // literally the only fix, since esbuild fucking sucks
+}
+
+function downloadSingleFile(compiledContents) {
+    const blob = new Blob([compiledContents], { type: 'application/javascript' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'MeteorXClient.js';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+async function processFiles() {
+    try {
+        const skipTypeScript = document.getElementById('compileJsToJsCheckbox').checked;
+
+        await loadJSZip();
+        await loadTerser();
+        if (!skipTypeScript) await loadTypeScript();
+
+        const fileEntries = await loadZipAndCompile(skipTypeScript);
+
+        const jsContents = skipTypeScript
+            ? fileEntries.map(entry => entry.content)
+            : fileEntries.map(compileTypeScript);
+
+        const bundledCode = await bundleWithEsBuild(jsContents);
+
+        const minified = await Terser.minify(bundledCode);
+
+        downloadSingleFile(minified.code);
+    } catch (error) {
+        const errorMessages = [
+            "holy degler theres an eror!!! ",
+            "oh my deeg: ",
+            "what the yegl? ",
+            "uh this is like not yeeing: "
+        ];
+        const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+        alert(randomMessage + error.message + '... more info has been debugged in the console! please dm astraa if you cant fix your issue eagler');
+        console.error('weird dumby error: ' + error.stack || error);
+    }
+}
+</script>
+</body>
+</html>

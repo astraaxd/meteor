@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meteor Client Mod Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        #modMenu {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #2c2c2c;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            width: 320px;
+            z-index: 1000;
+        }
+        #modMenu h1 {
+            font-size: 24px;
+            color: #ff5722;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .modItem {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modItem label {
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+        .modItem input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            appearance: none;
+            border: 2px solid #ff5722;
+            border-radius: 5px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+        .modItem input[type="checkbox"]:checked {
+            background-color: #ff5722;
+        }
+        .modItem input[type="checkbox"]:checked::before {
+            content: '✔';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 14px;
+            color: white;
+        }
+        .menuToggleBtn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #ff5722;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menuToggleBtn:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="menuToggleBtn" class="menuToggleBtn">Open Mod Menu</button>
+
+    <div id="modMenu">
+        <h1>Meteor Client</h1>
+        <div class="modItem">
+            <label for="crashServer">Crash Server</label>
+            <input type="checkbox" id="crashServer">
+        </div>
+        <div class="modItem">
+            <label for="instantBreak">Instant Break</label>
+            <input type="checkbox" id="instantBreak">
+        </div>
+        <div class="modItem">
+            <label for="xRay">X-Ray</label>
+            <input type="checkbox" id="xRay">
+        </div>
+        <div class="modItem">
+            <label for="killaura">Killaura</label>
+            <input type="checkbox" id="killaura">
+        </div>
+        <div class="modItem">
+            <label for="autoClicker">Auto Clicker</label>
+            <input type="checkbox" id="autoClicker">
+        </div>
+    </div>
+
+    <script>
+        let isMenuVisible = false;
+
+        const menu = document.getElementById("modMenu");
+        const menuToggleBtn = document.getElementById("menuToggleBtn");
+
+        let intervalIds = {};  // Store interval IDs for each checkbox
+
+        menuToggleBtn.addEventListener("click", () => {
+            isMenuVisible = !isMenuVisible;
+            menu.style.display = isMenuVisible ? "block" : "none";
+            menuToggleBtn.textContent = isMenuVisible ? "Close Mod Menu" : "Open Mod Menu";
+        });
+
+        const buttons = [
+            { id: "crashServer", method: () => console.log("Crash Server Activated") },
+            { id: "instantBreak", method: () => console.log("Instant Break Activated") },
+            { id: "xRay", method: () => console.log("X-Ray Activated") },
+            { id: "killaura", method: () => console.log("Killaura Activated") },
+            { id: "autoClicker", method: () => console.log("Auto Clicker Activated") }
+        ];
+
+        buttons.forEach(button => {
+            const checkbox = document.getElementById(button.id);
+            checkbox.addEventListener("change", () => {
+                if (checkbox.checked) {
+                    // Start spamming the console with no delay
+                    intervalIds[button.id] = setInterval(button.method, 0);
+                } else {
+                    // Clear the interval to stop spamming
+                    clearInterval(intervalIds[button.id]);
+                }
+            });
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                isMenuVisible = false;
+                menu.style.display = "none";
+                menuToggleBtn.textContent = "Open Mod Menu";
+            }
+        });
+    </script>
+
+</body>
+</html>
