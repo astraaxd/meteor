@@ -311,6 +311,9 @@ class AutoClicker {
         this.updateInterval = null;
     }
 
+    ongoon() {
+        console.log('haigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieghaigtwheoiuhawieg');
+    }
     onButtonEnable() {
         this.updateInterval = setInterval(() => {
             if (this.isActive) {
